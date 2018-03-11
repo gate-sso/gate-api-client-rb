@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/gate-sso/gate-api-client-rb.svg?branch=master)](https://travis-ci.org/gate-sso/gate-api-client-rb)
+
 # Gate Api Client
 
 Gate Api Client is a ruby gem used to intract with [Gate http APIs](https://github.com/gate-sso/gate).
