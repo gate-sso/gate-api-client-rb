@@ -11,6 +11,13 @@ module GateApiClient
       expect(configuration.gate_host).to eq(expected_host)
     end
 
+    it 'can set api_token' do
+      expected_api_token = 'random_api_token'
+      configuration.api_token = expected_api_token
+
+      expect(configuration.api_token).to eq(expected_api_token)
+    end
+
     describe '.configure' do
       subject do
         configuration = GateApiClient.configure do |config|

@@ -12,12 +12,24 @@ module GateApiClient
       @configuration.gate_host = gate_uri_string
     end
 
+    def api_token
+      @configuration.api_token
+    end
+
+    def api_token=(api_token_string)
+      @configuration.api_token = api_token_string
+    end
+
     def nss_host_path
       @configuration.booking_path
     end
 
     def nss_host_path=(nss_host_path_string)
       @configuration.booking_path = nss_host_path_string
+    end
+
+    def generate_uri(path)
+      @configuration.gate_host.to_uri[path]
     end
   end
 
