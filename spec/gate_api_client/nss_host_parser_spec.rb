@@ -1,0 +1,22 @@
+require 'spec_helper'
+
+module GateApiClient
+  describe NSSHostParser do
+    let(:access_key) { 'random_key' }
+    let(:hostname) { 'instance_host_name' }
+    let(:group_name) { 'sysadmin' }
+    let(:created_at) { "2018-03-11T18:03:56.000Z" }
+    let(:updated_at) { "2018-03-12T04:23:26.422Z" }
+    let(:deseralised_response_body) { {"id":2980, "name": hostname, "created_at": created_at, "updated_at": updated_at, "api_key":nil, "access_key": access_key }.to_json }
+    let(:http_response) { double(Wrest::Native::Response, code: 200, ok?: true, content_type: 'application/json',
+                                     body: deseralised_response_body) }
+
+    it 'should return nss_host object for success http response' do
+      nss_host = NSSHostParser.parse(http_response)
+
+      expect(nss_host).to be_an_instance_of(NSSHost)
+      expect(nss_host.access_key).to eq(access_key)
+    end
+  end
+end
+

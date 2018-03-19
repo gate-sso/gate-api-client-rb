@@ -13,7 +13,7 @@ module GateApiClient
       it 'fetch host specific token' do
         stub_request(:post, "http://localhost:3000/nss/host?group_name=sysadmin&name=instance_host_name&token=").
         with(:headers => {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'Content-Type'=>'application/json'}).
-        to_return(body: response_body, headers: {'Content-Type' => 'application/json'})
+        to_return(body: response_body, headers: {'Content-Type' => 'application/json'}, status: 200)
 
         nss_host = NSSHost.get_nss_host_token(hostname, group_name)
 
