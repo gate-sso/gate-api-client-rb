@@ -21,12 +21,22 @@ module GateApiClient
     end
 
     context "empty response" do
-    let(:empty_http_response) { double(Wrest::Native::Response, code: "200", ok?: true, content_type: 'application/json',
+      let(:empty_http_response) { double(Wrest::Native::Response, code: "200", ok?: true, content_type: 'application/json',
                                  body: "") }
       it 'should return error object for success http response with nil body' do
         nss_host = NSSHostParser.parse(empty_http_response)
 
         expect(nss_host.errors).to eq(["Bad Response"])
+      end
+    end
+
+    context "invalid http response" do
+      let(:invalid_http_response) { double(Wrest::Native::Response, code: "500", internal_server_error?: true, content_type: 'application/json',
+                                 body: "") }
+      it 'should return error object with error message' do
+        nss_host = NSSHostParser.parse(invalid_http_response)
+
+        expect(nss_host.errors).to eq(["Internal Server Error"])
       end
     end
   end
