@@ -11,7 +11,7 @@ module GateApiClient
       let(:response_body) { {"id":2980, "name": hostname, "created_at": created_at, "updated_at": updated_at, "api_key":nil, "access_key": access_key }.to_json }
 
       it 'fetch host specific token' do
-        stub_request(:post, "http://localhost:3000/nss/host?group_name=sysadmin&name=instance_host_name&token=").
+        stub_request(:post, "#{GateApiClient.configuration.gate_host}/nss/host?group_name=sysadmin&name=instance_host_name&token=#{GateApiClient.configuration.api_token}").
         with(:headers => {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'Content-Type'=>'application/json'}).
         to_return(body: response_body, headers: {'Content-Type' => 'application/json'}, status: 200)
 

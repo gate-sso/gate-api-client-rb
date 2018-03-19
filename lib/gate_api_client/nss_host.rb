@@ -20,8 +20,7 @@ module GateApiClient
 
     def self.get_nss_host_token(hostname, group_name)
       response = request(hostname, group_name)
-      response_body = JSON.parse(response.body)
-      NSSHost.new(response_body["access_key"])
+      return NSSHostParser.parse(response)
     end
 
     private
