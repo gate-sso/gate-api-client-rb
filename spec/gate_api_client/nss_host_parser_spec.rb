@@ -36,7 +36,17 @@ module GateApiClient
       it 'should return error object with error message' do
         nss_host = NSSHostParser.parse(invalid_http_response)
 
-        expect(nss_host.errors).to eq(["Internal Server Error"])
+        expect(nss_host.errors).to eq(["5XX Internal Server Error"])
+      end
+    end
+
+    context "invalid http response" do
+      let(:invalid_http_response) { double(Wrest::Native::Response, code: "400", bad_request?: true, content_type: 'application/json',
+                                 body: "") }
+      it 'should return error object with error message' do
+        nss_host = NSSHostParser.parse(invalid_http_response)
+
+        expect(nss_host.errors).to eq(["4XX Bad Response"])
       end
     end
   end

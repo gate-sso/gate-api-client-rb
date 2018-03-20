@@ -8,7 +8,9 @@ module GateApiClient
           return NSSHost.new(JSON.parse(response.body)["access_key"])
         end
       elsif SERVER_DOWN_HTTP_STATUS_CODES.include?(response.code.to_i)
-        return InvalidNSSHost.new("Internal Server Error")
+        return InvalidNSSHost.new("5XX Internal Server Error")
+      elsif CLIENT_ERROR_HTTP_STATUS_CODES.include?(response.code.to_i)
+        return InvalidNSSHost.new("4XX Bad Response")
       end
       InvalidNSSHost.new("Bad Response")
     end
