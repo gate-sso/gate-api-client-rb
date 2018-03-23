@@ -21,11 +21,19 @@ module GateApiClient
     end
 
     def nss_host_path
-      @configuration.booking_path
+      @configuration.nss_host_path
     end
 
     def nss_host_path=(nss_host_path_string)
-      @configuration.booking_path = nss_host_path_string
+      @configuration.nss_host_path = nss_host_path_string
+    end
+
+    def api_resource_auth_path
+      @configuration.api_resource_auth_path
+    end
+
+    def api_resource_auth_path=(api_resource_auth_path_string)
+      @configuration.api_resource_auth_path = api_resource_auth_path_string
     end
 
     def generate_uri(path)
@@ -46,6 +54,7 @@ module GateApiClient
   def self.initialize_configuration!
     @configuration = Configuration.new
     @configuration.nss_host_path = '/nss/host'
+    @configuration.api_resource_auth_path = '/api_resource/authenticate'
     @configuration
   end
 end

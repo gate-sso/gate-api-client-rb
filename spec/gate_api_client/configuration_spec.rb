@@ -27,6 +27,7 @@ module GateApiClient
       it { is_expected.to be_instance_of(described_class) }
       it { expect(subject.gate_host).to eq('http://localhost:3000') }
       it { expect(subject.nss_host_path).to eq('/nss/host') }
+      it { expect(subject.api_resource_auth_path).to match('/api_resource/authenticate') }
     end
   end
 end
