@@ -28,13 +28,16 @@ module GateApiClient
       ApiResourceAuthentication.new(response)
     end
 
-    private
-    def self.request(api_key, access_token)
-      begin
-        ApiResourceAuthentication.uri(api_key, access_token).get
-      rescue Errno::ECONNREFUSED
-        { "status" => CONNECTION_REFUSED }
+    class << self
+      private
+      def request(api_key, access_token)
+        begin
+          ApiResourceAuthentication.uri(api_key, access_token).get
+        rescue Errno::ECONNREFUSED
+          { "status" => CONNECTION_REFUSED }
+        end
       end
     end
   end
 end
+
