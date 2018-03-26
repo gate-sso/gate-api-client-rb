@@ -7,7 +7,7 @@ module GateApiClient
     end
 
     def autheticated?
-      true
+      return @result == 0 ? true : false
     end
 
     def self.uri(api_key, access_token)
@@ -25,7 +25,7 @@ module GateApiClient
     def self.authenticate(api_key, access_token)
       response = request(api_key, access_token)
 
-      ApiResourceAuthentication.new(response)
+      ApiResourceAuthentication.new(JSON.parse(response.body)["result"])
     end
 
     class << self
