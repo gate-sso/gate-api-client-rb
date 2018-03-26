@@ -5,6 +5,7 @@ require 'gate_api_client/configuration'
 require 'gate_api_client/nss_host/nss_host'
 require 'gate_api_client/nss_host/nss_host_parser'
 require 'gate_api_client/nss_host/invalid_nss_host'
+require 'gate_api_client/api_resource_authentication/api_resource_authentication'
 
 module GateApiClient
   CONNECTION_REFUSED  = 'ECONNREFUSED'
