@@ -11,7 +11,7 @@ module GateApiClient
     end
 
     def self.uri(api_key, access_token)
-      @uri ||= GateApiClient.configuration.generate_uri(GateApiClient.configuration.api_resource_auth_path.concat("/#{api_key}/#{access_token}"))
+      GateApiClient.configuration.generate_uri(GateApiClient.configuration.api_resource_auth_path + "/#{api_key}/#{access_token}")
     end
 
     def self.uri_as_string
